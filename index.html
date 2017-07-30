@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Calculator</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--<meta charset="utf-8"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Orbitron'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class ="container-fluid">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div id="calcholder">
+          <div id="calclabel"></div>
+          <div id="calcscreen">
+            <div id="screenmajor">
+            </div>
+            <div id="screenminor">
+            </div>
+          </div>
+          <div id="buttonsarea">
+             	<table id="buttontable"> 
+                <tr> 
+                  <td><button class ="normbutton" type="button" id="Clear">AC</button></td> 
+                  <td><button class ="normbutton" type="button" id="Clear">CE</button></td> 
+                  <td><button class ="normbutton" type="button">&divide</button></td> 
+                  <td><button class ="normbutton" type="button">&times</button></td> 
+                </tr> 
+                <tr> 
+                  <td><button class ="normbutton" type="button">7</button></td> 
+                  <td><button class ="normbutton" type="button">8</button></td> 
+                  <td><button class ="normbutton" type="button">9</button></td> 
+                  <td><button class ="normbutton" type="button">-</button></td> 
+                </tr> 
+                  <td><button class ="normbutton" type="button">4</button></td> 
+                  <td><button class ="normbutton" type="button">5</button></td> 
+                  <td><button class ="normbutton" type="button">6</button></td> 
+                  <td><button class ="normbutton" type="button">+</button></td> 
+                </tr> 
+                <tr> 
+                  <td><button class ="normbutton" type="button">1</button></td> 
+                  <td><button class ="normbutton" type="button">2</button></td> 
+                  <td><button class ="normbutton" type="button">3</button></td> 
+                  <td rowspan=2 ><button class ="normbutton" type="button" style="height:100px;">=</button></td> 
+                </tr> 
+                <tr> 
+                  <td colspan=2 ><button class ="normbutton" type="button" style="width:125px; border-radius:10%">0</button></td>
+                  <td><button class ="normbutton" type="button">.</button></td> 
+                </tr> 
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center" id="info">
+      Coded by <a href="https://www.freecodecamp.com/dereje1" target="_blank">DGetahun</a>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
