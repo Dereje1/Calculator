@@ -8,7 +8,7 @@ $(document).ready(function() {
           var resultArr=[0,0];//array with 2 elements used to store values[cummulative,pressed]
           var lastOperator="";//captures the last operator used
 
-          
+
           //runs on click of any of the calc buttons
           $('.normbutton').click(function() {
             //capture button pressed
@@ -38,21 +38,21 @@ $(document).ready(function() {
                 }
               }
               else{
-                //otherwise run overflow and lock out untill AC pressed 
+                //otherwise run overflow and lock out untill AC pressed
                 overflow();
                 if(buttonHtml!=="AC"){return;}
               }
-              
+
             }
             //for capturing only numerical or . buttons
             var pressedButton;
-            //capture minor and major screen content , for major ensure that it is a number 
+            //capture minor and major screen content , for major ensure that it is a number
             screenMajorValue = parseFloat($('#screenmajor').html());
             screenMinorValue = $('#screenminor').html();
             //clause for decimal point
             if (buttonHtml==="."){pressedButton =".";}
             else{pressedButton = parseFloat(buttonHtml);}
-            
+
             //if button is a number or decimal point then...
             if (!isNaN(pressedButton)||(pressedButton===".")){
                 //if in the middle of an operation or value of major screen=0 empty screen
@@ -63,7 +63,7 @@ $(document).ready(function() {
                 var screenMajorArr=$('#screenmajor').html().split('')
                 //otherwise first test if only one decimal (point) is included
                 var decimalInclude=screenMajorArr.includes('.');
-                //if decimal point already exists on major screen do nothing 
+                //if decimal point already exists on major screen do nothing
                 if ((pressedButton===".")&&decimalInclude){return;}
                 //otherwise append the number/decimal point to major screen
                 $('#screenminor').append(pressedButton);
@@ -89,10 +89,10 @@ $(document).ready(function() {
                 }
                 //operation only pressed once simply set pressed value to what is in the Major screen
                 else{
-                  
+
                 resultArr[1]=screenMajorValue;
                 }
-              
+
                 //check that operation is not "CE" and add operation to minor screen
                 //note CE will have different requirement for minor screen display
                 if(buttonHtml!=="CE"){
@@ -105,8 +105,8 @@ $(document).ready(function() {
                      $('#screenminor').html(screenMinorValue+" "+buttonHtml+" ");
                    }
                 }
-                
-                
+
+
                 //go thru the various operation scenarios
                 switch(buttonHtml){
                   //for ALl clear reset everything back to original state
@@ -120,9 +120,9 @@ $(document).ready(function() {
                   case "CE":
                     $('#screenmajor').empty();
                     $('#screenmajor').append(resultArr[0]);
-                    
+
                     $('#screenminor').empty();
-                    //keep buffer only as long as evaluation has not ended 
+                    //keep buffer only as long as evaluation has not ended
                     if((screenMinorValue.length!==0)&&lastOperator!==""){$('#screenminor').append("= "+resultArr[0]);}
                     //if screenminor is already clean no need to keep buffer clear all out
                     else{
@@ -146,7 +146,7 @@ $(document).ready(function() {
                     //if last character is a repeat operator do nothing (except for decimal point)
                     if (!isNaN(lastCharScreenMinor)||(lastCharScreenMinor===".")){
                      //other wise first check that last and current operator are the same
-                     //this allows the cummulative result to be displayed when a new 
+                     //this allows the cummulative result to be displayed when a new
                      //operation is requested and finishes off the last operation started
                      if ((lastOperator!==buttonHtml)&&((lastOperator!==""))){
                         //finish off last operation started
@@ -160,7 +160,7 @@ $(document).ready(function() {
                     }
                 }
             }
-            
+
         });
 });
 
@@ -178,7 +178,7 @@ function emptyScreen(){
 //lastop= previously used operation
 function operate(arr,operator,lastop){
   //for multiplication / division change into operation it can recognize from thr html
-  
+
   if(operator==="×"){operator="*";}
   if(operator==="÷"){operator="/";}
   //if this is the first operation simply return the currently pressed val
@@ -189,7 +189,7 @@ function operate(arr,operator,lastop){
   evaluation = decimalHandler(evaluation);
   //below is an attempt to round off large numbers so that screen overflows will be limited
   //first check if it is already over the limit, note evaluation is now a string already
-  
+
   if((evaluation.toString().length)>overFlowLimit){
     //next check if it is a decimal , if so...
     if (!(Number.isInteger(Number(evaluation)))){
@@ -223,6 +223,7 @@ function overflow(){
 function decimalHandler(num){
   //get length of whole number to find how many siginifcant digits to round off to
   var wholeNoLength= parseFloat(Math.round(num).toString().length)+1;
+  if(num < 0){wholeNoLength+=1;} // account for negative symbol to the length if a negative number
   //if not integer round off up to however much screen space left
   if (!(Number.isInteger(num))){return num.toFixed(overFlowLimit-wholeNoLength);}
   else{return num;}
